@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Passing Event As As Props</title>
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+  </head>
+
+  <body>
+    <div class="js-container"></div>
+
+    <script type="text/babel">
+      function Child({ onClick }) {
+        return <button onClick={onClick}>Click Me</button>;
+      }
+
+      function Parent() {
+        function showMsg() {
+          alert("Hello from Parent");
+        }
+
+        return <Child onClick={showMsg} />;
+      }
+
+      const container = document.querySelector(".js-container");
+      ReactDOM.createRoot(container).render(<Parent />);
+    </script>
+  </body>
+</html>

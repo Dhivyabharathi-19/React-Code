@@ -1,0 +1,62 @@
+<!-- Contact Form
+ Build a contact form which submits user feedback and contact details to a back end API -->
+<!doctype html>
+<html>
+  <head>
+    <title>Contact Form</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      function ContactForm() {
+        const [name, setName] = React.useState("");
+        const [email, setEmail] = React.useState("");
+        const [message, setMessage] = React.useState("");
+
+        function handleSubmit(e) {
+          e.preventDefault();
+        }
+
+        return (
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <br />
+            <br />
+
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <br />
+            <br />
+
+            <textarea
+              placeholder="Message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            />
+            <br />
+            <br />
+
+            <button type="submit">Send</button>
+          </form>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById("root")).render(
+        <ContactForm />,
+      );
+    </script>
+  </body>
+</html>

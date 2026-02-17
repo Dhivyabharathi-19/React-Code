@@ -1,0 +1,63 @@
+<!-- // Scenario // You are building a Shopping Cart App. // Two components need the
+same cart count: // CartDisplay → shows number of items // AddToCartButton →
+increases count // The cart count must always stay in sync. // Task // Store the
+cart count in the Parent (App) component. // Pass the count to CartDisplay. //
+Pass the update function to AddToCartButton. // Clicking the button should
+increase the cart count. // Check- // Can you identify shared state? // Can you
+lift state up to a common parent? // Can you pass data and functions via props? -->
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Shopping Cart App</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+      body {
+        font-family: Arial;
+        text-align: center;
+        margin-top: 50px;
+      }
+      button {
+        padding: 8px 15px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      function ParentApp() {
+        const [count, setCount] = React.useState(0);
+
+        return (
+          <>
+            <CartDisplay count={count} />
+            <AddToCartButton setCount={setCount} />
+          </>
+        );
+      }
+
+      function CartDisplay({ count }) {
+        return <h3>Cart Items: {count}</h3>;
+      }
+
+      function AddToCartButton({ setCount }) {
+        return (
+          <button onClick={() => setCount((prev) => prev + 1)}>
+            Add To Cart
+          </button>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<ParentApp />);
+    </script>
+  </body>
+</html>
